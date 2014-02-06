@@ -3,6 +3,6 @@
 $x = 2;
 
 do {
-	$x = $x * $x;
 	echo "$x\n";
-} while ($x < 500);
+	$x = $x * $x;
+} while ($x < 1000000);
