@@ -1,8 +1,8 @@
 <?php
 
-$x = 105;
+$x = 2;
 
 do {
-	$x = $x - 5;
+	$x = $x * $x;
 	echo "$x\n";
-} while ($x > -9);
+} while ($x < 500);
