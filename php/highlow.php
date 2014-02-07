@@ -6,7 +6,7 @@ $first_name = trim(fgets(STDIN));
 
 fwrite(STDOUT, "Hello $first_name\n");
 
-$game_guess = rand(1, 100);
+$game_guess = mt_rand(1, 100);
 
 fwrite(STDOUT, "Guess a number between 1 and 100: ");
 
