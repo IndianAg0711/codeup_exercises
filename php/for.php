@@ -12,11 +12,15 @@ echo "Please enter a number to count by: ";
 
 $countBy = fgets(STDIN);
 
-$countBy = intval($countBy);
-
 $begin = intval($begin);
 
 $end = intval($end);
+
+if (!is_numeric($countBy)) {
+	$countBy = 1;
+}	else {
+	$countBy = intval($countBy);
+}
 
 for ($a = $begin; $a <= $end; $a += $countBy) {
 	echo "$a\n";
