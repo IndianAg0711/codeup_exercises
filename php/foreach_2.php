@@ -24,9 +24,14 @@ $books = array(
 );
 
 foreach ($books as $title => $data) {
-	echo "$title\n\n";
+	if ($data['published'] > 1950) {
+			echo "$title\n";
 	foreach ($data as $datum => $fact) {
-		echo "$datum => $fact\n";
+			echo "$datum => $fact\n";
+	}
+
+		
+		
 
 	}
 
