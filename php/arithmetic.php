@@ -17,9 +17,9 @@ function divide($a, $b) {
 }
 
 
-// add(4,5);
-// subtract(5,2);
-// multiply(9,8);
-// divide(9,3);
+add(4,5);
+subtract(5,2);
+multiply(9,8);
+divide(9,3);
 
 ?>
