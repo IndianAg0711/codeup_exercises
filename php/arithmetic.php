@@ -4,8 +4,16 @@ function error($a, $b) {
 	echo "Error. You input $a and $b. Please use numbers." . PHP_EOL;
 }
 
+function validate($a, $b) {
+	if ((is_numeric($a)) && (is_numeric($b))) {
+		return true;
+}	else {
+		return false;
+}
+}
+
 function add($a, $b) {
-	if (is_numeric($a) && is_numeric($b)) {
+	if (validate($a, $b)) {
     echo $a + $b . PHP_EOL;
 }	else {
 		error($a, $b);
@@ -14,7 +22,7 @@ function add($a, $b) {
 }
 
 function subtract($a, $b) {
-	if (is_numeric($a) && is_numeric($b)) {
+	if (validate($a, $b)) {
     echo $a - $b . PHP_EOL;
 }	else {
 		error($a, $b);
@@ -22,7 +30,7 @@ function subtract($a, $b) {
 }
 
 function multiply($a, $b) {
-	if (is_numeric($a) && is_numeric($b)) {
+	if (validate($a, $b)) {
 	echo $a * $b . PHP_EOL;
 }	else {
 		error($a, $b);
@@ -31,9 +39,9 @@ function multiply($a, $b) {
 
 function divide($a, $b) {
 	if ($b == 0) {
-		echo "You cannot divide by 0!" . PHP_EOL;
+		return false;
 	}
-		elseif (is_numeric($a) && is_numeric($b)) {
+		elseif (validate($a, $b)) {
 			echo $a / $b . PHP_EOL;
 }			else {
 				error($a, $b);
@@ -41,7 +49,7 @@ function divide($a, $b) {
 }
 
 function modulus($a, $b) {
-	if (is_numeric($a) && is_numeric($b)) {
+	if (validate($a, $b)) {
 	echo $a % $b . PHP_EOL;
 }	else {
 		error($a, $b);
