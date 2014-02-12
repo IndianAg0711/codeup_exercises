@@ -19,13 +19,14 @@ function get_input($upper = false) {
         }
 }
 
+
 // The loop!
 do {
     // Iterate through list items
     echo list_items($items);
 
     // Show the menu options
-    echo '(N)ew item, (R)emove item, (Q)uit : ';
+    echo '(N)ew item, (R)emove item, (S)ort, (Q)uit : ';
 
     // Get the input from user
     // Use trim() to remove whitespace and newlines
@@ -46,6 +47,9 @@ do {
         // Remove from array
         unset($items[$key - 1]);
         $items = array_values($items);
+    } elseif ($input == 'S') {
+        //sort the list
+        sort($items);
     }
 // Exit when input is (Q)uit
 } while ($input != 'Q');
