@@ -48,8 +48,21 @@ do {
         unset($items[$key - 1]);
         $items = array_values($items);
     } elseif ($input == 'S') {
+            //sort options
+        do {
+            echo "Options: (A)-Z or (Z)-A: ";
+            //get order option
+            $option = get_input(TRUE);
+            if ($option == 'A') {
+            sort($items);
+            break;
+        }   elseif ($option == 'Z') {
+            rsort($items);
+            break;
+        }
+        } while ($option != 'A' || $option !='Z');
         //sort the list
-        sort($items);
+        
     }
 // Exit when input is (Q)uit
 } while ($input != 'Q');
