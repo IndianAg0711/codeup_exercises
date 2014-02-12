@@ -4,13 +4,15 @@ $nothing = NULL;
 $something = '';
 $array = array(1,2,3);
 
+unset($nothing);
+
 // Create a funciton that checks if a variable is set or empty, and display "$variable_name is SET|EMPTY"
 function checkSet($a) {
 	if (empty($a)) {
-		return false;
+		return true;
 	}
 		else {
-			return true;
+			return false;
 		}
 }
 
@@ -28,7 +30,7 @@ if (checkSet($something)) {
 }
 
 
-if (checkSet($nothing)) {
+if (checkSet($array)) {
 	echo "\$array is set\n";
 }	else {
 	echo "\$array is empty\n";
