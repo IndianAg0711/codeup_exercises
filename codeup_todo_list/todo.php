@@ -3,6 +3,10 @@
 // Create array to hold list of todo items
 $items = array();
 
+
+// Function library
+
+// function for listing items in array
 function list_items($list) {
     $string = "";
     foreach ($list as $key => $value) {
@@ -11,6 +15,7 @@ function list_items($list) {
     return $string;
 }
 
+// function for correcting user input
 function get_input($upper = false) {
     if ($upper == TRUE) {
         return strtoupper(trim(fgets(STDIN)));
@@ -35,10 +40,22 @@ do {
 
     // Check for actionable input
     if ($input == 'N') {
+
         // Ask for entry
         echo 'Enter item: ';
         // Add entry to list array
-        $items[] = get_input();
+        $new_item = get_input();
+        // Ask user if item should be at beginning or end of list
+        echo "Place item at (B)eginning or (E)nd of list? ";
+        $priority = get_input(TRUE);
+            if ($priority == 'B') {
+                array_unshift($items, $new_item);
+            } 
+            else {
+                $items[] = $new_item;
+
+            }
+        
     } elseif ($input == 'R') {
         // Remove which item?
         echo 'Enter item number to remove: ';
@@ -53,6 +70,7 @@ do {
             echo "Options: (A)-Z or (Z)-A: ";
             //get order option
             $option = get_input(TRUE);
+            //sort according to user input
             if ($option == 'A') {
             sort($items);
             break;
@@ -61,8 +79,11 @@ do {
             break;
         }
         } while ($option != 'A' || $option !='Z');
-        //sort the list
         
+        
+    } elseif ($input == 'F') {
+        // Hidden command to remove first item in list
+        array_shift($items);
     }
 // Exit when input is (Q)uit
 } while ($input != 'Q');
