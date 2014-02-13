@@ -31,7 +31,7 @@ do {
     echo list_items($items);
 
     // Show the menu options
-    echo '(N)ew item, (R)emove item, (S)ort, (Q)uit : ';
+    echo '(N)ew item, (R)emove item, (S)ort, (O)pen document, (Q)uit : ';
 
     // Get the input from user
     // Use trim() to remove whitespace and newlines
@@ -84,6 +84,15 @@ do {
     } elseif ($input == 'F') {
         // Hidden command to remove first item in list
         array_shift($items);
+    } elseif ($input == 'L') {
+        // Hidden command to remove last item in list
+        array_pop($items);
+    } elseif ($input == 'O') {
+        $filename = "todo_list.txt";
+        $handle = fopen($filename, "r");
+        $string = fread($handle, filesize($filename));
+        $items = explode("\n", $string);
+        fclose($handle);
     }
 // Exit when input is (Q)uit
 } while ($input != 'Q');
