@@ -2,6 +2,7 @@
 
 function humanized_list($string) {
 	$array = explode(', ', $string);
+	sort($array);
 	$last_item = array_pop($array);
 	$string = implode(', ', $array);
 	$list = $string . ', and ' . $last_item . PHP_EOL;
