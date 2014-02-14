@@ -24,6 +24,15 @@ function get_input($upper = false) {
         }
 }
 
+// add items to existing array using external file
+function add_external_data($filename) {
+    $file = "$filename";
+    $handle = fopen($file, 'r');
+    $string = fread($handle, filesize($file));
+    $new_array = explode("\n", $string);
+    return $new_array;
+}
+
 
 // The loop!
 do {
@@ -31,7 +40,7 @@ do {
     echo list_items($items);
 
     // Show the menu options
-    echo '(N)ew item, (R)emove item, (S)ort, (O)pen document, (Q)uit : ';
+    echo '(N)ew item, (R)emove item, (SO)rt, (S)ave Document, (O)pen document, (A)dd external data, (Q)uit : ';
 
     // Get the input from user
     // Use trim() to remove whitespace and newlines
@@ -64,7 +73,7 @@ do {
         // Remove from array
         unset($items[$key - 1]);
         $items = array_values($items);
-    } elseif ($input == 'S') {
+    } elseif ($input == 'SO') {
             //sort options
         do {
             echo "Options: (A)-Z or (Z)-A: ";
@@ -93,6 +102,18 @@ do {
         $string = fread($handle, filesize($filename));
         $items = explode("\n", $string);
         fclose($handle);
+    }  elseif ($input == 'A') {
+        $external_array = add_external_data("todo_list.txt");
+        $items = array_merge($items, $external_array);
+    } elseif ($input == 'S') {
+        echo "Save as: ";
+        $filename = fgets(STDIN);
+        $file = "$filename";
+        $handle = fopen($file, 'w');
+        $item_string = implode("\n", $items);
+        fwrite($handle, $item_string . PHP_EOL);
+        fclose($handle);
+        echo "Save Successful!" . PHP_EOL; 
     }
 // Exit when input is (Q)uit
 } while ($input != 'Q');
