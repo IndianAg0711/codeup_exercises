@@ -105,15 +105,34 @@ do {
     }  elseif ($input == 'A') {
         $external_array = add_external_data("todo_list.txt");
         $items = array_merge($items, $external_array);
+    // Save file option
     } elseif ($input == 'S') {
         echo "Save as: ";
         $filename = fgets(STDIN);
+        // Confirm file overwrite
+        if (is_file($filename)) {
+            echo "\nWarning: File exists. \nWould you like to overwrite? (Y/N) ";
+            $confirm = get_input(TRUE);
+                if ($confirm != 'Y') {
+                    echo "Save aborted.\n";
+                }
+                else {
+                    $file = "$filename";
+                    $handle = fopen($file, 'w');
+                    $item_string = implode("\n", $items);
+                    fwrite($handle, $item_string . PHP_EOL);
+                    fclose($handle);
+                    echo "Save Successful!" . PHP_EOL; 
+                }
+        }
+        else {
         $file = "$filename";
         $handle = fopen($file, 'w');
         $item_string = implode("\n", $items);
         fwrite($handle, $item_string . PHP_EOL);
         fclose($handle);
         echo "Save Successful!" . PHP_EOL; 
+    }   
     }
 // Exit when input is (Q)uit
 } while ($input != 'Q');
